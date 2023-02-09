@@ -80,7 +80,8 @@ the user to learn about the strengths, weaknesses, and improvements they can mak
 
 ### bitpass - Simple user password analysis
 <img width="250px" src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/355/334/datas/gallery.jpg" alt="bitpass - Simple user password analysis">
-### \t\t\t
+
+### bitpass - Complex user password analysis
 <img  width="250px" src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/355/332/datas/gallery.jpg" alt="bitpass - Complex user password analysis">
 
 
