@@ -10,7 +10,7 @@ function createWindow () {
         }
     })
 
-    //load the index.html from a url
+    //load the index.html from a URL
     win.loadURL('http://localhost:3000');
 
     win.autoHideMenuBar = true;
