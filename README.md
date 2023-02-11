@@ -1,12 +1,21 @@
 
 <a href="https://devpost.com/software/bit-pass">
-  <img src="public/readmelogo.png" alt="bitpass - Welcome" width="220">
+  <img src="img/bitpass_title.png" alt="bitpass - Welcome" width="220">
 </a>
 
+## Running the program
 
+---
+In your terminal, run `npm start` to start the local dev server. 
+>You can now visit the application locally: `http://localhost:3000/` or on your network: `http://YOUR_IP:3000`
+
+Then, if you want to run the *Electron* application, ***in a new terminal*** 
+run `npm run electron-dev`
+>The web app `bitpass` will be opened on your machine
 
 ## Project Overview
 
+---
 **bitpass** is a powerful password generator and analysis tool that helps users
 create strong and secure passwords for their online accounts. With its minimalistic
 interface and advanced features, **bitpass** provides users with the ability to easily
@@ -20,6 +29,7 @@ commonly used passwords.
 
 ## Guidelines
 
+---
 The requirements for CSE's (Communications Security Establishment) challenge were as follows:
 
 > CSE is looking to for ways to help people make more secure passwords
@@ -34,7 +44,9 @@ The requirements for CSE's (Communications Security Establishment) challenge wer
 
 ## Technologies Used
 
-### **bitpass** was developed using **Electron** and **React**.
+---
+
+#### ***bitpass** was developed using **Electron** and **React***.
 
 Electron was used to build the user interface and create a seamless experience for users on both
 Windows and Mac operating systems. We chose Electron for its ability to be used as an offline web application or
@@ -46,6 +58,7 @@ it to build user interfaces.
 
 ## What I learned
 
+---
 ### Electron:
 
 - **Cross-platform development:** _This provided an opportunity to learn about the different platforms
@@ -61,6 +74,7 @@ it to build user interfaces.
 
 ## Key Features
 
+---
 ### Password Generation:
 
 Users can generate passwords of varying lengths and complexity. The program uses a variety of characters, including
@@ -70,30 +84,75 @@ Users can type in their desired password and the program will analyze it based o
 such as length and included character sets. The program will then provide the user with a score based 
 on the strength of the password. This process is responsive as the user changes their password, allowing 
 the user to learn about the strengths, weaknesses, and improvements they can make to their password in real time.
-## Screenshots or Demo Video
+## Screenshots
 
-### bitpass - Simple password
-<img width="250px" src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/354/330/datas/gallery.jpg" alt="bitpass - Simple password">
+---
+### bitpass Generation - Simple, complex
+<a href="https://devpost.com/software/bit-pass" target="_blank">
+  <img width="350px" src="img/simple_gen.png" alt="bitpass - Simple password">
+  <img width="350px" src="img/complex_gen.png" alt="bitpass - Complex password">
+</a>
 
-### bitpass - Complex password
-<img width="250px" src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/355/336/datas/gallery.jpg" alt="bitpass - Complex password">
-
-### bitpass - Simple user password analysis
-<img width="250px" src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/355/334/datas/gallery.jpg" alt="bitpass - Simple user password analysis">
-
-### bitpass - Complex user password analysis
-<img  width="250px" src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/355/332/datas/gallery.jpg" alt="bitpass - Complex user password analysis">
+### bitpass Analysis - Simple, complex user passwords
+<a href="https://devpost.com/software/bit-pass" target="_blank">
+  <img width="350px" src="img/simple_ana.png" alt="bitpass - Simple user password analysis">
+  <img  width="350px" src="img/complex_ana.png" alt="bitpass - Complex user password analysis">
+</a> 
 
 
-## Code Samples
+## Code Sample
 
-## Contributions
+---
+Here is some code I wrote using state variables for the first time in the early 
+hours of the morning ([App.js](src/App.js)):
+```js
+// Creating state variables
+const [strength, setStrength] = useState(8);
+const [length, setLength] = useState(8);
+const [specialChar, setSpecialChar] = useState(false);
+const [numbers, setNumbers] = useState(false);
+const [password, setPassword] = useState(generatePassword(8, false, false))
+const [noun, setNoun] = useState("Weak");
+const [crackTime, setCrackTime] = useState(calculateTimeToCrack(password));
 
+// Each component in our UI calls their respective handler to update their own values
+const handleTextChange = (e) => {
+    let val = e.target.value
+    setLength(val.length)
+    setPassword(val)
+}
+const handleSpecial = (e) => setSpecialChar(e.target.checked)
+const handleNumbers = (e) => setNumbers(e.target.checked)
+const handleSliderChange = (e) => setLength(e.target.value)
+const onGenerate = () => setPassword(generatePassword(length, numbers, specialChar))
+
+/* 
+This event handler watches all the state variables so when any are changed, 
+a general change handler goes through and updates all of the associated components. 
+This creates a UI that is responsive to the user's every action.
+*/ 
+useEffect(() => {
+    handleChange();  // Call general change handler
+}, [password, numbers, specialChar, length])
+
+const handleChange = () => {
+    // Update strength value and decriptor, crack time, and checkboxes (planned)
+}
+```
 ## Future Goals
 
-## References
+---
+I would like to build natural language processing into **bitpass** in order to analyze passwords on more than the single
+metric we have right now, which is brute forcing. The app will then feature both a strength bar for each type of password analysis
+I will probably use some fork of the natural language password strength estimator `zxcvbn.js`
 
 ## Collaborators
 
-## Contact Information
+---
+All the collaborators for **bitpass**:
+
+**[Zachary Walton](https://github.com/zackwalton)** --
+**[Kira Fountain](https://github.com/shinykiwi)** --
+**[Chris Egener](https://github.com/chrisegener22)** --
+**[Lucas Pentland-Hyde](https://github.com/lucasadilla)**
 
